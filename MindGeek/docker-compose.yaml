@@ -1,0 +1,21 @@
+﻿version: '3.8'
+services:
+  redis:
+    image: redis
+    container_name: redis_api
+    ports:
+      - "6379:6379"
+    command: ["redis-server"]
+  mindgeek_api:
+    image: dudumitrueduard/mindgeek_api:${TAG:-latest}
+    build: .
+    environment:
+      - ASPNETCORE_HTTP_PORT=https://+:5001
+      - ASPNETCORE_URLS=http://+:5000
+    depends_on: 
+      - redis
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    links:
+      - "redis"
