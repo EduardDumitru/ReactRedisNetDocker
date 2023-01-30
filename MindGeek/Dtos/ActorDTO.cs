@@ -1,6 +1,5 @@
-﻿using Mapster;
-
-namespace MindGeek.Models
+﻿
+namespace MindGeek.Dtos
 {
     public record ActorDTO
     {

@@ -1,7 +1,6 @@
 using Mapster;
 using MapsterMapper;
-using Microsoft.AspNetCore.Mvc;
-using MindGeek.Models;
+using MindGeek.Dtos;
 using MindGeek.Repositories;
 using MindGeek.Services;
 using StackExchange.Redis;
@@ -36,7 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/movie", async (MovieDTO movie, IMovieService _movieService) =>
+app.MapPost("/movie", async (MovieToAddDTO movie, IMovieService _movieService) =>
 {
     try
     {
@@ -49,7 +48,7 @@ app.MapPost("/movie", async (MovieDTO movie, IMovieService _movieService) =>
     }
 }).WithName("CreateMovie");
 
-app.MapPost("/movie/multiple", async (List<MovieDTO> movies, IMovieService _movieService) =>
+app.MapPost("/movie/multiple", async (List<MovieToAddDTO> movies, IMovieService _movieService) =>
 {
     try
     {

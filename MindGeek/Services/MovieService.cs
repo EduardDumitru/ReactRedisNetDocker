@@ -1,9 +1,8 @@
-﻿using Mapster;
-using MapsterMapper;
+﻿using MapsterMapper;
+using MindGeek.Dtos;
 using MindGeek.Extensions;
 using MindGeek.Models;
 using MindGeek.Repositories;
-using System.Net;
 
 namespace MindGeek.Services
 {
@@ -20,13 +19,13 @@ namespace MindGeek.Services
             _httpClient = httpClient;
             _logger = logger;
         }
-        public async Task CreateMovie(MovieDTO movie)
+        public async Task CreateMovie(MovieToAddDTO movie)
         {
             var adaptedMovie = _mapper.From(movie).AdaptToType<Movie>();
             await _movieRepo.CreateMovie(adaptedMovie);
         }
 
-        public async Task CreateMovies(List<MovieDTO> movies)
+        public async Task CreateMovies(List<MovieToAddDTO> movies)
         {
             var adaptedMovies = _mapper.From(movies).AdaptToType<List<Movie>>();
 
@@ -45,7 +44,7 @@ namespace MindGeek.Services
             return _mapper.From(await _movieRepo.GetMovies()).AdaptToType<List<MovieDTO>>();
         }
 
-        private async Task MapImagesToMovieList(List<MovieDTO> movies, List<Movie> adaptedMovies)
+        private async Task MapImagesToMovieList(List<MovieToAddDTO> movies, List<Movie> adaptedMovies)
         {
             for (int i = 0; i < movies.Count; i++)
             {
@@ -53,7 +52,7 @@ namespace MindGeek.Services
             }
         }
 
-        private async Task MapImagesToMovie(MovieDTO movie, Movie adaptedMovie)
+        private async Task MapImagesToMovie(MovieToAddDTO movie, Movie adaptedMovie)
         {
             for (int i = 0; i < movie.KeyArtImages.Count; i++)
             {

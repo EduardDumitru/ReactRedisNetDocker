@@ -1,12 +1,12 @@
-﻿using MindGeek.Models;
+﻿using MindGeek.Dtos;
 
 namespace MindGeek.Services
 {
     public interface IMovieService
     {
-        Task CreateMovie(MovieDTO movie);
+        Task CreateMovie(MovieToAddDTO movie);
         Task<MovieDTO> GetMovieById(string id);
         Task<List<MovieDTO>> GetMovies();
-        Task CreateMovies(List<MovieDTO> movies);
+        Task CreateMovies(List<MovieToAddDTO> movies);
     }
 }
