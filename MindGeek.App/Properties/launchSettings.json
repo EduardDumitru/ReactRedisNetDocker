@@ -1,4 +1,12 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:44884",
+      "sslPort": 44367
+    }
+  },
   "profiles": {
     "MindGeek.App": {
       "commandName": "Project",
@@ -7,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
       },
-      "applicationUrl": "https://localhost:3001;http://localhost:3000"
+      "applicationUrl": "https://localhost:44367;http://localhost:44884"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -20,16 +28,9 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:3000",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
       "useSSL": true
-    }
-  },
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:15849",
-      "sslPort": 0
     }
   }
 }

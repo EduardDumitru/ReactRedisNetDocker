@@ -22,9 +22,7 @@ services:
   mindgeek_app:
     image: dudumitrueduard/mindgeek_app:${TAG:-latest}
     build: .
-    environment:
-      - ASPNETCORE_HTTP_PORT=https://+:3001
-      - ASPNETCORE_URLS=http://+:3000
     ports:
-      - "3000:3000"
-      - "3001:3001"
+      - "3000:80"
+      - "3001:443"
+    command: ["npm run start"]

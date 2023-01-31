@@ -7,6 +7,11 @@ using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(o => o.AddPolicy("AllowAll", x =>
+{
+    x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
+
 var config = new TypeAdapterConfig();
 builder.Services.AddSingleton(config);
 builder.Services.AddTransient<IMapper, Mapper>();
@@ -32,8 +37,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.MapPost("/movie", async (MovieToAddDTO movie, IMovieService _movieService) =>
 {
@@ -85,5 +88,7 @@ app.MapGet("/movie/all", async (IMovieService _movieService) =>
         return Results.BadRequest(ex.Message);
     }
 }).WithName("GetMovies");
+
+app.UseCors("AllowAll");
 
 app.Run();

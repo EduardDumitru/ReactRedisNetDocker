@@ -8,11 +8,12 @@
 		<IsPackable>false</IsPackable>
 		<SpaRoot>ClientApp\</SpaRoot>
 		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-		<SpaProxyServerUrl>http://localhost:5002</SpaProxyServerUrl>
-		<SpaProxyLaunchCommand>npx serve -s build -p 3000</SpaProxyLaunchCommand>
+		<SpaProxyServerUrl>http://localhost:3001</SpaProxyServerUrl>
+		<SpaProxyLaunchCommand>npx serve -s build -p 3001</SpaProxyLaunchCommand>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>6ff8c0c1-113f-4dee-a43e-b7c0dcc994f8</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..</DockerfileContext>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -39,8 +40,8 @@
 
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-		<!--<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />-->
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
 
 		<!-- Include the newly-built files in the publish output -->
 		<ItemGroup>
